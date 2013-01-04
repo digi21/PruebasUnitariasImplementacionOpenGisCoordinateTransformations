@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestSettings name="Trace and Test Impact" id="3a99bafe-23bf-487e-a495-815f9572d64f" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Description>These are test settings for Trace and Test Impact.</Description>
+  <Deployment>
+    <DeploymentItem filename="C:\Users\Jose Angel\Documents\Visual Studio 2010\Projects\bin\Debug\Win32\EntidadD.dll" />
+    <DeploymentItem filename="C:\Users\Jose Angel\Documents\Visual Studio 2010\Projects\bin\Debug\Win32\TopcalIOD.dll" />
+    <DeploymentItem filename="C:\Users\Jose Angel\Documents\Visual Studio 2010\Projects\bin\Debug\Win32\ToolkitPro1513vc100D.dll" />
+    <DeploymentItem filename="C:\Users\Jose Angel\Documents\Visual Studio 2010\Projects\bin\Debug\Win32\Digi21d.dll" />
+    <DeploymentItem filename="C:\Users\Jose Angel\Documents\Visual Studio 2010\Projects\bin\Debug\Win32\Digi21.BaseDatosd.dll" />
+  </Deployment>
+  <Execution>
+    <TestTypeSpecific>
+      <UnitTestRunConfig testTypeId="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b">
+        <AssemblyResolution>
+          <TestDirectory useLoadContext="true" />
+        </AssemblyResolution>
+      </UnitTestRunConfig>
+    </TestTypeSpecific>
+    <AgentRule name="Execution Agents">
+    </AgentRule>
+  </Execution>
+</TestSettings>

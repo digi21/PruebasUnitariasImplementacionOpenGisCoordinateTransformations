@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Digi21.OpenGis.Epsg;
+using Digi21.OpenGis.CoordinateTransformations;
+using Digi21.OpenGis.CoordinateSystems;
+
+namespace TestDigi21OpenGIS
+{
+    [TestClass]
+    public class Test5210Part9 : VerticalCoordinateSystemTestBase
+    {
+        [TestMethod]
+        public void Test5210_part_9_Epsg()
+        {
+            var vertA = CoordinateSystemAuthorityFactory.CreateVerticalCoordinateSystem(5705);
+            var vertB = CoordinateSystemAuthorityFactory.CreateVerticalCoordinateSystem(5612);
+
+            ExecuteTests(vertA, vertB);
+        }
+
+        [TestMethod]
+        public void Test5210_part_9_WktEpsg()
+        {
+            IVerticalCoordinateSystem vertA = (IVerticalCoordinateSystem)factory.CreateFromWkt(@"VERT_CS[""Baltic height"",VERT_DATUM[""Baltic Sea"",2005,AUTHORITY[""EPSG"",""5105""]],UNIT[""metre"",1,AUTHORITY[""EPSG"",""9001""]],AXIS[""H"", Up],AUTHORITY[""EPSG"",""5705""]]");
+            IVerticalCoordinateSystem vertB = (IVerticalCoordinateSystem)factory.CreateFromWkt(@"VERT_CS[""Baltic depth"",VERT_DATUM[""Baltic Sea"",2005,AUTHORITY[""EPSG"",""5105""]],UNIT[""metre"",1,AUTHORITY[""EPSG"",""9001""]],AXIS[""D"", Down],AUTHORITY[""EPSG"",""5612""]]");
+
+            ExecuteTests(vertA, vertB);
+        }
+
+        [TestMethod]
+        public void Test5210_part_9_MathTransform()
+        {
+            MathTransformFactory mtf = new MathTransformFactory();
+
+            IMathTransform i = mtf.CreateFromWkt(@"CONCAT_MT[PARAM_MT[""Affine"", PARAMETER[""num_row"",2], PARAMETER[""num_col"", 2],PARAMETER[""elt_0_0"", -1],PARAMETER[""elt_0_1"", 0],PARAMETER[""elt_1_0"", 0],PARAMETER[""elt_1_1"", -1]]]");
+
+            ExecuteTests(i);
+        }
+
+        protected override void ExecuteTests(IMathTransform d)
+        {
+            TestDirectTransform(d, 72, -72, 1E-6);
+            TestDirectTransform(d, 66.67, -66.67, 1E-6);
+            TestDirectTransform(d, 17, -17, 1E-6);
+            TestDirectTransform(d, 0, 0, 1E-6);
+            TestDirectTransform(d, -28, 28, 1E-6);
+            TestDirectTransform(d, -36, 36, 1E-6);
+            TestDirectTransform(d, -44.3, 44.3, 1E-6);
+            TestDirectTransform(d, -210, 210, 1E-6);
+        }
+    }
+}
